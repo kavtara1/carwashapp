@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'carwashapp/home.css' %}">
+</head>
+<body>
+
+{% for i in branches %}
+    <div class="card">
+    <p>{{ i.city }}</p>
+    <p>{{ i.location }}</p>
+    <p>{{ i.number_of_boxes }}</p>
+    </div>
+{% endfor %}
+
+</body>
+</html>
