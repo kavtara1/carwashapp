@@ -8,14 +8,21 @@
     <link rel="stylesheet" href="{% static 'carwashapp/home.css' %}">
 </head>
 <body>
+    <div class="heading">
+        {% for i in company %}
+            <h1>{{ i.title }}</h1>
+        {% endfor %}
+
+    </div>
+<div class="card-container">
 
 {% for i in branches %}
     <div class="card">
-    <p>{{ i.city }}</p>
-    <p>{{ i.location }}</p>
-    <p>{{ i.number_of_boxes }}</p>
+    <img src="{{ i.CarWashImage.url }}" alt="">
+    <p> City: {{ i.city }}</p>
+    <p> Address: {{ i.location }}</p>
     </div>
 {% endfor %}
-
+</div>
 </body>
 </html>

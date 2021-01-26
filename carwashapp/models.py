@@ -14,7 +14,7 @@ class Branches(models.Model):
     city = models.CharField(max_length=225)
     location = models.CharField(max_length=225, unique=True, verbose_name="Address")
     number_of_boxes = models.PositiveSmallIntegerField(verbose_name="Number of boxes", default=1)
-    CarWashImage = models.ImageField()
+    CarWashImage = models.ImageField(upload_to='carwash_images')
 
     class Meta:
         verbose_name = "Branch"
@@ -26,7 +26,7 @@ class Branches(models.Model):
 
 class Employee(models.Model):
     full_name = models.CharField(max_length=225, verbose_name="Name and Lastname")
-    employee_photo = models.ImageField()
+    employee_photo = models.ImageField(upload_to='employee_images')
     personal_number = models.CharField(max_length=11, verbose_name="Personal Number", unique=True)
     employee_status = models.BooleanField(default=True, verbose_name="Status")
     age = models.PositiveSmallIntegerField(verbose_name="Age")
