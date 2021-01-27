@@ -1,0 +1,53 @@
+* {
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #FFF;
+
+}
+body {
+    background-color: #2a4d69;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.car-img {
+    width: 35%;
+    border-radius: 25px;
+
+}
+.list {
+    width: 250px;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.list li {
+    font-size: 20px;
+}
+.employee {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+h1 {
+    margin-bottom: 70px;
+}
+li {
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}

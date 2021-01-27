@@ -14,7 +14,8 @@ class Branches(models.Model):
     city = models.CharField(max_length=225)
     location = models.CharField(max_length=225, unique=True, verbose_name="Address")
     number_of_boxes = models.PositiveSmallIntegerField(verbose_name="Number of boxes", default=1)
-    CarWashImage = models.ImageField(upload_to='carwash_images')
+    car_wash_image = models.ImageField(upload_to='carwash_images')
+    branch_employees = models.ManyToManyField(to='carwashapp.Employee', blank=False)
 
     class Meta:
         verbose_name = "Branch"
@@ -30,7 +31,6 @@ class Employee(models.Model):
     personal_number = models.CharField(max_length=11, verbose_name="Personal Number", unique=True)
     employee_status = models.BooleanField(default=True, verbose_name="Status")
     age = models.PositiveSmallIntegerField(verbose_name="Age")
-    working_location = models.OneToOneField(to="carwashapp.Branches", on_delete=models.PROTECT, related_name="employee")
     gender = models.PositiveSmallIntegerField("Gender", choices=GenderChoices.choices, default=GenderChoices.Male)
     hire_date = models.DateTimeField(default=datetime.now())
 
@@ -40,10 +40,3 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.full_name
-
-
-
-
-
-
-

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'carwashapp/detail.css' %}">
+</head>
+
+<body>
+
+
+<section>
+    <img class="car-img" src="{{ branch.car_wash_image.url }}" alt="">
+
+
+    <div class="details-div">
+        <ul class="list">
+            <li> City: {{ branch.city }}</li>
+            <li> Address: {{ branch.location }}</li>
+            <li> Boxes: {{ branch.number_of_boxes }}</li>
+
+        </ul>
+    </div>
+</section>
+
+<div class="employee">
+    <h1>თანამშრომლები</h1>
+
+    <ul>
+
+
+        <li>
+            {% for i in emp %}
+                {% if i.employee_status %}
+                    <img src="{{ i.employee_photo.url }}" alt="">
+                    <span> Name: {{ i.full_name }}</span>
+                    <span> Age: {{ i.age }}</span>
+                {% endif %}
+            {% endfor %}
+
+
+        </li>
+
+    </ul>
+
+</div>
+
+
+</body>
+</html>
