@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from carwashapp.models import CompanyName, Employee, Branches, Prices, Discount
+from carwashapp.models import CompanyName, Employee, Branches, Prices, Discount, Orders
 
 
 @admin.register(CompanyName)
@@ -27,4 +27,9 @@ class PricesAdmin(admin.ModelAdmin):
 
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Orders)
+class OrdersAdmin(admin.ModelAdmin):
     pass

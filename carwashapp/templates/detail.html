@@ -33,9 +33,11 @@
         <li>
             {% for i in emp %}
                 {% if i.employee_status %}
+                    <a href="{{ request.get_full_path }}washer/{{i.id }}">
                     <img src="{{ i.employee_photo.url }}" alt="">
                     <span> Name: {{ i.full_name }}</span>
                     <span> Age: {{ i.age }}</span>
+                    </a>
                 {% endif %}
             {% endfor %}
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <link rel="stylesheet" href="{% static 'carwashapp/washer.css' %}">
+</head>
+<body>
+<div>
+
+<h1>გარეცხილი მანქანების სტატისტიკა</h1>
+
+    <div class="statistics">
+    <p> მიმდინარე კვირაში: {{ week.count }}</p>
+     <p> მიმდინარე თვეში: {{ month.count }}</p>
+    <p> მიმდინარე წელში:  {{ year.count }}</p>
+    </div>
+</div>
+</body>
+</html>

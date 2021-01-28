@@ -32,7 +32,8 @@ class Employee(models.Model):
     employee_status = models.BooleanField(default=True, verbose_name="Status")
     age = models.PositiveSmallIntegerField(verbose_name="Age")
     gender = models.PositiveSmallIntegerField("Gender", choices=GenderChoices.choices, default=GenderChoices.Male)
-    hire_date = models.DateTimeField(default=datetime.now())
+    hire_date = models.DateTimeField(verbose_name="Date",  default=datetime.now())
+    share_amount = models.PositiveSmallIntegerField(verbose_name="Share",  default=1)
 
     class Meta:
         verbose_name = "Employee"
@@ -75,3 +76,24 @@ class Discount(models.Model):
             else:
                 discount_prices.append(new_price)
         return discount_prices
+
+
+class Orders(models.Model):
+    branch = models.ForeignKey(to="Branches", on_delete=models.PROTECT, null=False)
+    car_type = models.PositiveSmallIntegerField("CarType", choices=CarTypeChoices.choices, default=CarTypeChoices.Sedan)
+    price = models.ForeignKey('carwashapp.Prices', on_delete=models.PROTECT, null=False)
+    car_number = models.CharField(max_length=7, null=False)
+    washer = models.ForeignKey("carwashapp.Employee", on_delete=models.PROTECT, null=False)
+    order_date = models.DateTimeField(default=datetime.now())
+    washers_share = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.car_number
+
+    def save(self, *args, **kwargs):
+        self.washers_share = self.calculate_washers_share()
+        super(Orders, self).save(*args, **kwargs)
+
+    def calculate_washers_share(self):
+        share_amount = (self.washer.share_amount * self.price.price) / 100
+        return share_amount
