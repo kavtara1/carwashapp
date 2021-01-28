@@ -51,3 +51,12 @@ body {
     justify-content: center;
     height: 100px;
 }
+/*.discounts {*/
+/*    display: flex;*/
+/*}*/
+.new-prices {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    /*flex-direction: column;*/
+}

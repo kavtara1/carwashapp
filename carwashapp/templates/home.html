@@ -28,6 +28,38 @@
                 </div>
             </a>
         {% endfor %}
+
     </div>
+
+
+    <section class="discounts">
+
+
+
+{% for discs in disc %}
+    <div>
+    {% if disc%}
+     <h2>ფასდაკლება</h2>
+     <p>{{ discs.discount }} %</p>
+    </div>
+    {% endif %}
+
+    <div class="new-prices">
+    <div>
+    {% for price in discs.prices_after_discount %}
+        <p> ახალი ფასი: {{ price}}</p>
+        {% endfor %}
+    {% endfor %}
+    </div>
+
+<div>
+    {% for prices in disc %}
+        {% for p in prices.prices.all %}
+            <p> მანქანის ტიპი: {{ p.get_car_type_display}}</p>
+            {% endfor %}
+    {% endfor %}
+</div>
+    </div>
+    </section>
 </body>
 </html>

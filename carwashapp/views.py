@@ -1,12 +1,16 @@
-from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
-from carwashapp.models import Branches, CompanyName, Employee
+from carwashapp.models import Branches, CompanyName,  Discount
 
 
 def branch_listing(request):
     branches = Branches.objects.all()
+    disc = Discount.objects.all()
+
     return render(request, "home.html", context={
-        "branches": branches
+        "branches": branches,
+        "disc": disc,
+
+
     })
 
 
@@ -16,7 +20,5 @@ def branch_detail_view(request, pk):
     return render(request, "detail.html", context={
         "branch": branch,
         "emp": emp
-
     })
-
 

@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from carwashapp.choises import GenderChoices
+from carwashapp.choises import GenderChoices, CarTypeChoices
 
 
 class CompanyName(models.Model):
@@ -40,3 +40,38 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class Prices(models.Model):
+    car_type = models.PositiveSmallIntegerField("CarType", choices=CarTypeChoices.choices, default=CarTypeChoices.Sedan,
+                                                unique=True)
+    price = models.PositiveSmallIntegerField(verbose_name="Price")
+
+    class Meta:
+        verbose_name = "Price list"
+        verbose_name_plural = "Price Lists"
+
+    def __str__(self):
+        return str(self.car_type)
+
+
+class Discount(models.Model):
+    prices = models.ManyToManyField(to='carwashapp.Prices', blank=False)
+    discount = models.PositiveSmallIntegerField(verbose_name="discount", default=0)
+
+    class Meta:
+        verbose_name = "Discount"
+        verbose_name_plural = "Discounts"
+
+    def __str__(self):
+        return f" Discount {self.discount}%"
+
+    def prices_after_discount(self):
+        discount_prices = []
+        for price in self.prices.all():
+            new_price = (price.price - (price.price * self.discount) / 100)
+            if new_price % 1 == 0:
+                discount_prices.append(int(new_price))
+            else:
+                discount_prices.append(new_price)
+        return discount_prices
